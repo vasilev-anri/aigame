@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -112,6 +113,54 @@ public class GameState {
             case "OO" -> playerStarted ? "Computer" : "Player";
             default -> "Draw";
         };
+    }
+
+    /**
+     * Generates all possible next states from the current position
+     *
+     * @return - list of all possible game states (objects) after each valid move
+     */
+    public List<GameState> getPossibleMoves() {
+        List<GameState> moves = new ArrayList<>();
+
+        // for each adj pair in the current list of nums
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            GameState newState = new GameState(this);   // copy current state
+            newState.move(i);
+            moves.add(newState);
+        }
+
+        return moves;
+    }
+
+    /**
+     * Evaluate current game state
+     * Heuristic evaluation function
+     *
+     * higher score - better for computer, lower score - better for player
+     * helps AI decide which moves lead to better positions
+     *
+     * @return - numerical score
+     */
+    public int evaluate() {
+        if (isGameOver()) {
+            String winner = getWinner();
+            if (winner.equals("Computer")) return Integer.MAX_VALUE;
+            if (winner.equals("Player")) return Integer.MIN_VALUE;
+            return 0;
+        }
+
+        int score = 0;
+
+        score += totalPoints * 10;
+        score += bank * 5;
+        score += (10 - numbers.size()) * 2;
+
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i) + numbers.get(i + 1) == 7) score += 3;
+        }
+
+        return score;
     }
 
     /**

@@ -42,8 +42,16 @@ public class Game {
 
     private void computerMove() {
         System.out.println("Computer's turn!");
-        int move = 0;
-        state.move(move);
+
+        AlphaBeta ai = new AlphaBeta();
+        long startTime = System.currentTimeMillis();
+
+        int move = ai.findBestMove(state, 4);
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("Computer thought for " + (endTime - startTime) + "ms");
         System.out.println("Computer chose index: " + move);
+
+        state.move(move);
     }
 }
