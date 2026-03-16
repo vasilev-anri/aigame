@@ -19,7 +19,7 @@ public class GameState {
      * Constructor for creating new initial game state
      * all counters at zero, remembers who started the game
      *
-     * @param numbers - starting sequence of numbers
+     * @param numbers      - starting sequence of numbers
      * @param playerStarts - true if players starts, false if computer starts
      */
     public GameState(List<Integer> numbers, boolean playerStarts) {
@@ -48,11 +48,9 @@ public class GameState {
     /**
      * make a move by combining the pair at specified index
      *
-     * @param pairFirstIndex
-     *
-     * If sum > 7: replace with 1, add 1 to total
-     * If sum < 7: replace with 3, subtract 1 from total
-     * If sum = 7: replace with 2, add 1 to bank
+     * @param pairFirstIndex If sum > 7: replace with 1, add 1 to total
+     *                       If sum < 7: replace with 3, subtract 1 from total
+     *                       If sum = 7: replace with 2, add 1 to bank
      *
      */
     public void move(int pairFirstIndex) {
@@ -95,7 +93,7 @@ public class GameState {
 
     /**
      * determine the winner
-     *
+     * <p>
      * if total & bank are even (EE): who started wins
      * if total & bank are odd (OO): another player wins
      * else: draw
@@ -136,7 +134,7 @@ public class GameState {
     /**
      * Evaluate current game state
      * Heuristic evaluation function
-     *
+     * <p>
      * higher score - better for computer, lower score - better for player
      * helps AI decide which moves lead to better positions
      *
@@ -163,8 +161,27 @@ public class GameState {
         return score;
     }
 
+    public String displayIndices() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Indices: ");
+
+        for (int i = 0; i < numbers.size(); i++) {
+            sb.append(String.format("%3d ", i));
+        }
+        sb.append("\n");
+
+        sb.append("Numbers: ");
+        for (int n : numbers) {
+            sb.append(String.format("%3d ", n));
+        }
+
+        sb.append(String.format(" | Total: %d, Bank: %d | %s's turn (Started: %s)", totalPoints, bank, isPlayerTurn ? "Player" : "Computer", playerStarted ? "Player" : "Computer"));
+        return sb.toString();
+    }
+
     /**
      * Human-readable game state representation
+     *
      * @return
      */
     @Override

@@ -35,6 +35,7 @@ public class Game {
 
 
     private void playerMove() {
+        System.out.println(state.displayIndices());
         System.out.print("Player's turn! Enter index (0-" + (state.numbers.size() - 2) + "): ");
         int move = scanner.nextInt();
         state.move(move);
