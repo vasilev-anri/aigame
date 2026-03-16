@@ -19,8 +19,8 @@ public class Game {
 
 
     public void play() {
-        System.out.println(state);
-        System.out.println();
+//        System.out.println(state);
+//        System.out.println();
 
         while (!state.isGameOver()) {
             if (state.isPlayerTurn) playerMove();
