@@ -23,7 +23,7 @@ public class Game {
 //        System.out.println();
 
         while (!state.isGameOver()) {
-            if (state.isPlayerTurn) playerMove();
+            if (state.isPlayerTurn()) playerMove();
             else computerMove();
             System.out.println(state);
             System.out.println();
@@ -36,7 +36,7 @@ public class Game {
 
     private void playerMove() {
         System.out.println(state.displayIndices());
-        System.out.print("Player's turn! Enter index (0-" + (state.numbers.size() - 2) + "): ");
+        System.out.print("Player's turn! Enter index (0-" + (state.getNumbers().size() - 2) + "): ");
         int move = scanner.nextInt();
         state.move(move);
     }

@@ -9,11 +9,11 @@ import java.util.List;
 
 public class GameState {
 
-    public List<Integer> numbers;
-    public int totalPoints;
-    public int bank;
-    public boolean isPlayerTurn;
-    public boolean playerStarted;           // used for winner determination at the end of the game
+    private List<Integer> numbers;
+    private int totalPoints;
+    private int bank;
+    private boolean isPlayerTurn;
+    private boolean playerStarted;           // used for winner determination at the end of the game
 
     /**
      * Constructor for creating new initial game state
@@ -177,6 +177,26 @@ public class GameState {
 
         sb.append(String.format(" | Total: %d, Bank: %d | %s's turn (Started: %s)", totalPoints, bank, isPlayerTurn ? "Player" : "Computer", playerStarted ? "Player" : "Computer"));
         return sb.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public int getBank() {
+        return bank;
+    }
+
+    public boolean isPlayerTurn() {
+        return isPlayerTurn;
+    }
+
+    public boolean isPlayerStarted() {
+        return playerStarted;
     }
 
     /**

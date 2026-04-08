@@ -2,6 +2,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Experimental framework to compare MiniMax and Alpha-Beta pruning algorithms
+ *
+ *
+ * collects the following performance metrics:
+ *  - number of wins for each player
+ *  - average computation time per game
+ *  - average number of nodes visited during each game
+ */
 public class Experiment {
 
     public static void main(String[] args) {
@@ -10,6 +19,12 @@ public class Experiment {
         runExperiment("AlphaBeta", 20);
     }
 
+    /**
+     * run series of games using specified algorithm for both players.
+     *
+     * @param algorithm - algorithm to test
+     * @param games - number of games to run
+     */
     private static void runExperiment(String algorithm, int games) {
 
         int playerWins = 0;
