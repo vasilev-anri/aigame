@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class AlphaBeta {
 
+    private static int nodesVisited = 0;
+
     /**
      * finds the best move for the computer from the current state of game
      *
@@ -15,6 +17,7 @@ public class AlphaBeta {
      * @return index of the best move to make
      */
     public int findBestMove(GameState state, int depth) {
+        resetNodesVisited();
         List<GameState> children = state.getPossibleMoves();            // all possible mvoes from current state
         int bestMove = 0;
         int bestValue = Integer.MIN_VALUE;
@@ -43,6 +46,9 @@ public class AlphaBeta {
      * @return evaluated score for this state
      */
     private int alphaBeta(GameState state, int depth, int alpha, int beta, boolean maximizingPlayer) {
+
+        nodesVisited += 1;
+
         // base case - depth limit reached or game is over
         if (depth == 0 || state.isGameOver()) return state.evaluate();
 
@@ -69,4 +75,11 @@ public class AlphaBeta {
         }
     }
 
+    public static int getNodesVisited() {
+        return nodesVisited;
+    }
+
+    public static void resetNodesVisited() {
+        nodesVisited = 0;
+    }
 }
