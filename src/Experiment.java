@@ -6,8 +6,8 @@ public class Experiment {
 
     public static void main(String[] args) {
 
-        runExperiment("Minimax", 10);
-        runExperiment("AlphaBeta", 10);
+        runExperiment("Minimax", 20);
+        runExperiment("AlphaBeta", 20);
     }
 
     private static void runExperiment(String algorithm, int games) {
